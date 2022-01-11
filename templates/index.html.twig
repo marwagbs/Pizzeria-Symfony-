@@ -1,0 +1,67 @@
+	{% extends 'base.html.twig' %}
+	
+	
+	{% block main %}
+		<div class="single-item">
+		    <div><img src="{{asset('images/slider-01.jpg')}}" alt="slider1"></div>
+		    <div><img src="{{asset('images/slider-02.jpg')}}" alt="slider2"></div>
+		    <div><img src="{{asset('images/slider-03.jpg')}}" alt="slider3"></div>
+		    
+		</div>
+		<section>
+		{% if app.user %}
+		<h2 >Bienvenue {{ app.user.firstname ~" "~ app.user.lastname }} dans 3WA Restaurant</h2>
+		{% else %}
+		<h2 >Bienvenue dans 3WA Restaurant</h2>
+		{% endif %}
+			<article class="welcome">
+			<div class="parent float">
+			<div class="div1"><img src="{{asset('images/grid1.jpg')}}"> </div>
+			<div class="div2"><img src="{{asset('images/grid2.jpg')}}"> </div>
+			<div class="div3"><img src="{{asset('images/grid3.jpg')}}"> </div>
+			<div class="div4"><img src="{{asset('images/grid4.jpg')}}"> </div>
+			</div>	
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas efficitur sed ex sed dignissim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Fusce id urna laoreet, tristique diam sit amet, fringilla tortor. Mauris eget elit neque. Praesent at urna non lectus faucibus vestibulum. Donec mattis sapien et lacus euismod, sit amet sollicitudin erat tempor. Donec urna sem, consequat sit amet urna ut, efficitur accumsan quam. Curabitur sit amet ex quis mi varius dapibus. Duis nisl lacus, venenatis ac tellus vel, rhoncus dapibus nisi. Vivamus sit amet tincidunt mi, in dapibus lacus. Phasellus pretium diam neque, eu tristique velit vulputate a. Cras ac mi vulputate, vehicula sapien at, fermentum mauris. Sed non efficitur est. Pellentesque id ex lacinia, aliquam ante vitae, volutpat velit. Curabitur sit amet condimentum elit, sed faucibus mi.</p>
+
+		<div class="clear"></div>
+			</article>
+		</section>
+		<section id="aPropos">
+			<h2>A propos de nous</h2>
+		<div class="propos">
+			<article>
+			<img src="{{asset('images/image1.jpg')}}" class="float">
+			<h3>Des matières premières de qualité</h3>
+			<p>3WA Restaurant attache beaucoup d'attention à la qualité des produits qui vous sont proposés.
+			Nous avons ainsi sélectionné pour vous le meilleur de l'Italie afin de vous servir des recettes simples et savoureuses : burrata, focaccia, charcuteries italiennes, carpaccio...</p>
+			<div class="clear"></div>
+			</article>
+			<article>
+			<img src="{{asset('images/image2.jpg')}}" class="left">
+			<h3>Notre philosophie : la satisfaction client</h3>
+			<p>Nous exigeons de nos restaurants un maximum de rigueur pour la plus grande satisfaction de nos clients. La propreté du restaurant est la première image que se fera le client, nous exigeons donc qu’elle soit exemplaire. L’accueil de nos clients est le commencement de leur fidélisation. Nous nous efforçons de les accueillir de façon professionnelle avec bonne humeur et dynamisme..</p>
+			<div class="clear"></div>
+			</article>
+			<article>
+			<video controls width="400" class="float">
+			<source src="https://www.youtube.com/watch?v=JfPpztrokXo&ab_channel=J%C3%A9susetGabriel"
+            type="video/webm" >
+			Sorry, your browser doesn't support embedded videos.
+			</video>
+			<h3>Savoir-faire de notre restaurant</h3>
+			<p>Spécialement formé à la préparation des pizzas, nos cuisiniers connaissent bien ce qui vous met l’eau à la bouche, les ingrédients sont délicatement découpés, disposés en ordre et recouverts de fromage pour une pizza croustillante et fondante à la fois….</p>
+			</article>		
+		</div>
+		</section>
+	{% endblock %}
+	
+	{% block script %}
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+  	<script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+ 	{# <script type="text/javascript" src="js/slick.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script> #}
+	<script src="{{ asset('js/slick.min.js') }}"></script>
+	<script src="{{ asset('js/main.js') }}"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<script src="{{asset('js/cart.js')}}"></script>
+	{% endblock %}

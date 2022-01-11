@@ -1,0 +1,181 @@
+<!--//Affichage html-->
+<!--accée du user-->
+<!DOCTYPE html>
+<!--//Affichage html-->
+<!--accée de user-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<head>
+		<meta charset="UTF-8">
+		<meta name="description" content="Interiart - Le design de votre intérieur à la carte par un décorateur pro">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Inscription</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+		<link rel="stylesheet" href="css/style.css">
+</head>
+
+  <body>
+<header>
+			<div class="container">
+
+				<div class="dropdown">
+					<div class="menuBtn" id="hamburger">
+						<div class="bar1"></div>
+						<div class="bar2"></div>
+						<div class="bar3"></div>
+					</div>
+					<?php 
+    				if(Session::isConnected()): ?>
+
+					<a href="logout.php"><span><i class="fas fa-sign-out-alt"></i>sign out</span></a>
+					<?php 
+    			else: ?>
+
+					<a href="authentification.php"><span><i class="fas fa-sign-in-alt"></i>Sign in</span></a>
+					<?php endif ; ?>
+					<a href="cart.php">
+                  <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-counter" id="number">0</span> 
+                    </a>
+					<a href="index.php" class="logo">
+						<img src="img/logoMarwa.svg" alt="Logo de restaurant">
+					</a>
+
+
+				</div>
+
+				<nav id="navigationList">
+					<ul>
+						<li><a href="index.php" class="active">Accueil</a></li>
+						<li><a href="">About</a></li>
+						<li><a href="">Menu</a></li>
+						<li><a href="product.php">Commander</a></li>
+						<?php if(Session::isConnected() && $_SESSION['login']['role']): ?>
+						<li><a href="addProduct.php">ajouter</a></li>
+						<?php endif ; ?>
+					</ul>
+				</nav>
+			</div>
+
+	</header>
+  <main>
+  	<section class="formdesing">
+   <div class="wrapper login">
+        <div class="containerForm">
+            <div class="col-left">
+                <div class="login-text">
+                    <h2>Welcome Back</h2>
+                    <p>Create your account.</p>
+                    <a href="registration.php" class="btn">Sign Up</a>
+                </div>
+            </div>
+
+            <div class="col-right">
+                <div class="login-form">
+                    <h2>Login</h2>
+                    <form action="" method="POST">
+                        <p> 
+       
+          <label for="prenom">Prénom :</label> 
+          <input type="text" name="firstname" id="firstname" />
+        </p>
+        <p> 
+          <label for="nom">Nom :</label> 
+          <input type="text" name="lastname" id="lastname" />
+        </p>
+        
+        <p>
+            <label for="numero">Numéro de téléphone:</label>
+            <input type="text" id="phonenumber" name="phonenumber">
+        </p>
+        <p>
+            <label for="mail">e-mail:</label>
+            <input type="email" id="mail" name="mail">
+        </p>
+        
+        <p>
+          <label for="password">Mot de passe :</label> 
+          <input type="password" name="password" id="password" /> 
+          
+        </p>
+        
+        
+        <p>
+          <label for="news">Recevoir des newsletter </label>
+          <input type="checkbox" name="isnews" id="isnews">
+          
+        </p>
+
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </section>
+    </main>
+    
+    <footer>
+		<div>
+			<aside class="font">
+				<ul>
+					<li>
+						<i class="fas fa-phone-volume"></i>
+						<span>Phone:</span>
+						<p> 00000000</p>
+						</li>
+					<li>
+						<i class="fas fa-map-marker-alt"></i>
+						<span>Location:</span> 
+						<p> Lorem ipsum dolor sit amet</p>
+					
+					</li>
+					<li>
+						<i class="fas fa-envelope"></i>
+						<span>Email:</span> 
+						<p> resaturant@gmail.com</p>
+					</li>
+				</ul>
+			</aside>
+		</div>
+			
+			
+			<section class="restofooter">
+				<div class="open">
+					<aside>
+					<span>Opening hours</span>
+					<ul>
+						<li>Monday: Closed</li>
+						<li>Tue-Wed : 9am - 10pm</li>
+						<li>Thu-Fri : 9am - 10pm</li>
+						<li>Sat-Sun : 5pm - 10pm</li>
+					</ul>
+				</aside>
+				<aside>
+					<span>Contact</span>
+					<address>
+						<p>13 Christopher Street<br>
+							New York,<br>
+							NY 10014-3543</p>
+						<p>+01 2000 800 9999</p>
+					</address>
+				</aside>
+				<aside>
+					<span>Social networks</span>
+					<div class="reseaux">
+						<a href="#" class="fab fa-facebook-f"></a>
+					</div>
+				</aside>
+			</div> <!-- end of .flex -->
+					
+				</div>
+			</section>
+		</footer>
+	<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	 <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+  	<script type="text/javascript" src="js/slick.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+	<script type="text/javascript" src="js/dropdown.js"></script>
+	<script type="text/javascript" src="js/localStorage.js"></script>
+  </body>
+</html>

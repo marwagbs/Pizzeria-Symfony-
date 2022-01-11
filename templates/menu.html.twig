@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+{% block header %}
+	<div class="container">
+		<div class="prixTotal">
+				<div>
+    				<span class="monPanier">Mon panier</span>
+    				<span class="panier"><i class="fas fa-shopping-cart"></i>
+                    <span id="cart">0</span> 
+                    </span>
+    			</div>
+        	    <a href="{{ path('index') }}" class="logo">
+				<img src="images/logo_pizza_v1.png" alt="Logo de resto">
+				<strong>3WA Restaurant</strong>
+			</a>	
+    	</div>		
+        <nav>   
+			<ul>
+				<li><a href="{{ path('home') }}">Acceuil</a></li>
+				<li><a href="#aPropos">A propos de nous</a></li>
+				<li class="current"><a href="{{ path('menu') }}">Notre carte</a></li>
+				<li><a href="{{ path('cart') }}">Commande</a></li>
+                {% if app.user %}
+                <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                {% else %}
+                <li><a href="{{ path('app_login') }}">Se connecter</a></li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                <li><a href="{{path('addProduct')}}">Ajout d'un produit</a></li>
+                 {% endif %}  
+			</ul>
+		</nav>
+    <div>
+    {% endblock %}
+
+{% block main %}
+<h1>Le detail de notre carte</h1>
+{% if app.user %}
+<p class="select">Bienvenue {{ app.user.firstname ~" "~ app.user.lastname }}</p>
+{% endif %}
+<p class="select">Choissisez votre pizza préférée</p>
+<div class="filter">
+        <button data-filter="all">Tous</button>
+        <button data-filter=".pizza">Pizza</button>
+        <button data-filter=".dessert">Dessert</button>
+        {# <button data-filter=".Boisson">Boisson</button> #}
+</div> <!-- end of .filter -->
+<section class="mix pizza">
+    <div class="special menu">
+    {% for product in products %}
+        {% if product.categorie =="pizza" %}
+     <article>
+            <h2>{{ product.name }}</h2>
+            <figure class="absolute">
+            <img src="{{ asset('images/' ~ product.photo) }}" alt="{{ product.name }}">
+            <figcaption>
+                    <div></div>
+                    <p class="prix">{{product.price|number_format(2)}} €</p>
+                </figcaption>
+            </figure>
+            <ul class="star">
+                    <li>{{ product.description }}</li>
+                    {# <li>{{product.quantity}}</li> #}
+            </ul>
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{path('remove',{id: product.id})}}" class="plus">Suprimer</a>
+            {% endif %}    
+			<a href="#" class="plus add" id-product={{product.id}}>Ajouter au panier</a>
+		</article>
+    
+{# {% else %}
+    Aucune pizza pour l'instant #}
+        {% endif %}
+{% endfor %}
+</div>
+</section>
+
+<section class="mix dessert">
+<div class="special menu">
+    {% for product in products %}
+        {% if product.categorie =="dessert" %}
+     <article>
+            <h2>{{ product.name }}</h2>
+            <figure class="absolute">
+            <img src="{{ asset('images/' ~ product.photo) }}" alt="{{ product.name }}">
+            <figcaption>
+                    <div></div>
+                    <p class="prix">{{product.price|number_format(2)}} €</p>
+                </figcaption>
+            </figure>
+            <ul class="star">
+                    <li>{{ product.description }}</li>
+                    {# <li>{{ product.quantity }}</li> #}
+            </ul>
+             {% if is_granted('ROLE_ADMIN') %}
+             <a href="{{path('remove',{id: product.id})}}" class="plus">Suprimer</a>
+            {% endif %} 
+			<a href="#" class="plus add" id-product={{product.id}}>Ajouter au panier</a>
+		</article>
+    
+{# {% else %}
+    Aucun dessert pour l'instant #}
+{% endif %}
+{% endfor %}
+</div>
+</section>
+{% endblock %}
+
+{% block script %}
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+	<!-- Charger le script du plugin -->
+	<script src="{{asset('js/mixitup.min.js')}}"></script>
+	<!-- Indiquer sur quel élément de la page on applique le plugin -->
+	<script>
+		var mixer = mixitup(".mixitup");
+	</script>
+<script src="{{asset('js/cart.js')}}"></script>
+<script src="{{asset('js/removeCart.js')}}"></script>
+{% endblock %}
